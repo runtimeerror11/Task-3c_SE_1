@@ -106,49 +106,7 @@ graph TB
         </ul>
     </div>
     
-    <div class="diagram-container">
-        <h2>Context Handling for Large Files</h2>
-        <div class="description">
-            <p><strong>Problem:</strong> Large Java files exceed LLM context windows.</p>
-            <p><strong>Solution:</strong> Intelligent context extraction sends only relevant code portions.</p>
-        </div>
-        <div class="mermaid">
-
-graph LR
-    A[Source File] --> B{File Size}
-    
-    B -->|< 50KB| C[Send Entire File to LLM]
-    B -->|> 50KB| D{Smell has<br/>line numbers?}
-    
-    D -->|Yes| E[Extract Context:<br/>line_start - 50<br/>to<br/>line_end + 50]
-    D -->|No| F[Extract First 50KB]
-    
-    E --> G[Send Context to LLM]
-    F --> G
-    C --> G
-    
-    G --> H[LLM Generates<br/>Refactored Code]
-    H --> I[Save Refactoring]
-    
-    style A fill:#E6F3FF
-    style G fill:#87CEEB
-    style H fill:#DDA0DD
-    style I fill:#90EE90
-    style B fill:#FFE4B5
-    style D fill:#FFE4B5
-
-        </div>
-    </div>
-    
-    <div class="description">
-        <h3>💡 Key Points</h3>
-        <ul>
-            <li><strong>Behavior Preservation:</strong> All refactorings maintain original functionality</li>
-            <li><strong>Documentation Only:</strong> Suggestions are documented, not automatically applied</li>
-            <li><strong>Manual Review Required:</strong> All changes must be reviewed before merging</li>
-            <li><strong>Test Compatibility:</strong> Refactorings preserve test suite compatibility</li>
-        </ul>
-    </div>
+   
     
     <script>
         mermaid.initialize({ 
