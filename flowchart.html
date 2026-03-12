@@ -66,7 +66,7 @@ graph TB
     CheckSmells -- "Yes" --> Select["Select Top N Smells<br/>N = max_refactorings"]
     Select --> LoopStart{"For each<br/>smell"}
     LoopStart -- "Process" --> ReadFile["Read Source File"]
-    ReadFile --> CheckSize{"File > 50KB?"}
+    ReadFile --> CheckSize{"File > 15KB?"}
     CheckSize -- "Yes" --> ExtractLarge["Extract Context<br/>±50 lines around smell"]
     CheckSize -- "No" --> ExtractSmall["Use Full File Content"]
     ExtractLarge --> CallLLM["Call LLM API<br/>- Send context<br/>- Get refactored code"]
